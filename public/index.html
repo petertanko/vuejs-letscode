@@ -97,18 +97,34 @@
             <button v-on:click="addTask">Add</button>
         </div>
         <div id="tasks">
-            <div v-for="(task, index) in tasks" v-bind:class="{active: isActive(index), task : true}">
-                <div class="title" v-on:click="select(index)">
-                    {{task.name}}
-                </div>
-                <div class="context">
-                    <i v-on:click="deleteTask(index, task.id)" class="fas fa-trash-alt"></i>
-                </div>
-            </div>
+            <list-item v-for="(task, index) in tasks" :key="task.id"
+            v-on:select="select" v-on:delete="deleteTask"
+            :item="task" :index="index" :active="isActive(index)">
+        </list-item>
         </div>
         <snackbar v-bind:notification="message"></snackbar>
     </div>
     <script>
+
+        Vue.component('list-item', {
+            props: ["index", "item", "active"],
+            template: '<div v-bind:class="{active: active, task : true}">' +
+                '<div class="title" v-on:click="select(index)">' +
+                '{{item.name}}' + 
+                '</div>' +
+                '<div class="context">'+
+                    '<i v-on:click="deleteTask(index, item.id)" class="fas fa-trash-alt"></i>'+
+                '</div>'+
+            '</div>',
+            methods: {
+                select: function (index) {
+                    this.$emit('select', index);
+                },
+                deleteTask: function (index, id) {
+                    this.$emit('delete', index, id);
+                },
+            }
+        });
 
         Vue.component('snackbar', {
             props:[
