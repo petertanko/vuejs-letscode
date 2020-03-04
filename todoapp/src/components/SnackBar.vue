@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "SlackBar",
+  name: "SnackBar",
   props: ["notification"]
 };
 </script>

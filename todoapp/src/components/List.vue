@@ -21,22 +21,22 @@ export default {
     ListItem
   },
   methods: {
-    isActive: function(index) {
+    isActive(index) {
       return this.selected === index;
     },
-    select: function(index) {
+    select(index) {
       if (this.isActive(index)) {
         this.selected = -1;
       } else {
         this.selected = index;
       }
     },
-    deleteItem: function(index, id) {
+    deleteItem(index, id) {
       this.selected = -1;
       this.$emit("delete", index, id);
     }
   },
-  data: function() {
+  data() {
     return {
       selected: -1
     };

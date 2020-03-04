@@ -20,12 +20,12 @@ export default {
     List
   },
   methods: {
-    addTask: function() {
+    addTask() {
       if (this.taskName) {
-        var task = { name: this.taskName };
+        let task = { name: this.taskName };
         this.$http
           .post("http://localhost:3000/tasks/", task)
-          .then(function(response) {
+          .then(response => {
             this.tasks.push(response.data);
             this.$emit("message", "Created!");
           })
@@ -33,33 +33,32 @@ export default {
       }
       this.taskName = "";
     },
-    deleteTask: function(index, id) {
+    deleteTask(index, id) {
       this.$http
         .delete("http://localhost:3000/tasks/" + id)
-        .then(function() {
+        .then(() => {
           this.tasks.splice(index, 1);
           this.$emit("message", "Deleted!");
         })
         .catch(this.httpError);
     },
-    showMessage: function(message) {
-      var vm = this;
-      vm.message = message;
-      setTimeout(function() {
-        vm.message = null;
+    showMessage(message) {
+      this.message = message;
+      setTimeout(() => {
+        this.message = null;
       }, 3000);
     },
-    httpError: function() {
+    httpError() {
       this.$emit("message", "Error during the request!");
     }
   },
-  created: function() {
-    this.$http.get("http://localhost:3000/tasks/").then(function(response) {
+  created() {
+    this.$http.get("http://localhost:3000/tasks/").then(response => {
       this.tasks = response.data;
     });
     this.$on("message", this.showMessage);
   },
-  data: function() {
+  data() {
     return {
       taskName: "",
       tasks: [],

@@ -1,5 +1,5 @@
 <template>
-  <div v-bind:class="{active: active, task : true}">
+  <div v-bind:class="{active: active, 'list-item' : true}">
     <div class="title" v-on:click="select(index)">{{item.name}}</div>
     <div class="context">
       <i v-on:click="deleteItem(index, item.id)" class="fas fa-trash-alt"></i>
@@ -12,10 +12,10 @@ export default {
   name: "ListItem",
   props: ["index", "item", "active"],
   methods: {
-    select: function(index) {
+    select(index) {
       this.$emit("select", index);
     },
-    deleteItem: function(index, id) {
+    deleteItem(index, id) {
       this.$emit("delete", index, id);
     }
   }
@@ -23,18 +23,18 @@ export default {
 </script>
 
 <style>
-.task.active {
-  transition: 0.5s;
-  margin-left: -10% !important;
-}
-
-.task {
+.list-item {
   transition: 0.5s;
   overflow: hidden;
   line-height: 2em;
   display: table;
   width: 110%;
   border-top: 1px solid #5f5f5f;
+}
+
+.list-item .active {
+  transition: 0.5s;
+  margin-left: -10% !important;
 }
 
 .title {
