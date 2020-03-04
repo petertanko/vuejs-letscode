@@ -10,3 +10,7 @@ jsdom jsdom-global - emulálni a dom-ot
 webpack-node-external - webpack azokat húzza be amely modulok kellenek
 @vue/test-utils - helper metódusokat biztosít, vue funkcionalitás
 expect - assertion library, teszt során minden működik e
+
+FileWatcher
+npm install --save-dev npm-watch
+npm run watch

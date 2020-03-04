@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "mochapack --webpack-config webpack.config.js --require test/setup.js test/**/*.spec.js"
+    "test": "mochapack --webpack-config webpack.config.js --require test/setup.js test/**/*.spec.js",
+    "watch": "npm-watch"
   },
   "dependencies": {
     "core-js": "^3.6.4",
@@ -26,6 +27,7 @@
     "mocha": "^7.1.0",
     "mocha-webpack": "^2.0.0-beta.0",
     "mochapack": "^1.1.13",
+    "npm-watch": "^0.6.0",
     "preload-webpack-plugin": "^3.0.0-beta.4",
     "vue-loader": "^15.9.0",
     "vue-template-compiler": "^2.6.11",
@@ -45,6 +47,13 @@
       "parser": "babel-eslint"
     },
     "rules": {}
+  },
+  "watch": {
+    "test": {
+      "patterns": ["src", "test"],
+      "extensions": "js,vue"
+
+    }
   },
   "browserslist": [
     "> 1%",
